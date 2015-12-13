@@ -10,35 +10,48 @@ package classes;
  * @author nani
  */
 public class Arvore {
-    private static Node raiz;   
+
+    private static Node raiz;
+
 
     public Arvore() {
+        if (raiz == null) {
+            raiz.setValor("raiz");
+           raiz.setPai(null);
+        }
     }
-    
-    
-    
+
     /**
      *
      * @param binario
      */
-    public static void insereNo(int binario){
-        if(raiz == null){
-            raiz.setValor("raiz");
-            if(binario == 0){
-                raiz.getEsquerda().setValor(String.valueOf(binario));
-            }else{
-                raiz.getDireita().setValor(String.valueOf(binario));
+    public static void insereNo(String binario) {        
+        for (int i = 0; i < binario.length(); i++) {
+            int b = binario.charAt(i);
+            if (b == 0) {
+                if(raiz.getEsquerda() == null){
+                    raiz.getEsquerda().setValor(String.valueOf(binario));                   
+                }else{
+                    Node no = new Node();
+                    
+                }
+            } else {
+                if(raiz.getDireita() == null){
+                    raiz.getDireita().setValor(String.valueOf(binario));                       
+                }else{
+                    Node no = new Node();
+                }
             }
-        }else{
+
         }
-    }
-   
-    public void removeNo(){
-        
+
     }
 
-    
-    public void buscaNo(){
-        
+    public void removeNo() {
+
+    }
+
+    public void buscaNo() {
+
     }
 }

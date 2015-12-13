@@ -66,7 +66,7 @@ public class Trie {
            
         }
         System.out.println("\n binario : "+binario);
-        Arvore.insereNo(Integer.parseInt(binario)) ;
+        Arvore.insereNo(binario) ;
        
         
     }
