@@ -11,7 +11,7 @@ package classes;
  */
 public class Arvore {
 
-    private static Node raiz;
+    private static final Node raiz = new Node();
 
     private static Node buscaNoEsquerda(Node raiz) {
          if(raiz.getEsquerda() == null){
@@ -20,7 +20,7 @@ public class Arvore {
              buscaNoEsquerda(raiz.getEsquerda());
          }
         
-        return null;
+        return raiz ;
     }
     private static Node buscaNoDireita(Node raiz) {
          if(raiz.getDireita() == null){
@@ -29,14 +29,14 @@ public class Arvore {
              buscaNoDireita(raiz.getDireita());
          }
         
-        return null;
+        return raiz;
     }
 
 
     public Arvore() {
         if (raiz == null) {
             raiz.setValor("raiz");
-           raiz.setPai(null);
+
         }
     }
 
@@ -46,12 +46,14 @@ public class Arvore {
      */
     public static void insereNo(String binario) {        
         for (int i = 0; i < binario.length(); i++) {
-            int b = binario.charAt(i);
+            int b = Integer.parseInt(String.valueOf(binario.charAt(i)));
             
           
             if (b == 0) {
                 if(raiz.getEsquerda() == null){
-                    raiz.getEsquerda().setValor(String.valueOf(binario));                   
+                     Node no = new Node();
+                    no.setValor(String.valueOf(b));
+                    raiz.setEsquerda(no);                   
                 }else{
                      Node no = new Node();
                     no = buscaNoEsquerda(raiz);
@@ -60,8 +62,10 @@ public class Arvore {
                     buscaNoEsquerda(raiz).getEsquerda().setValor(valor);
                 }
             } else {
-                if(raiz.getDireita().getValor().isEmpty()){
-                    raiz.getDireita().setValor(String.valueOf(binario));                       
+                if(raiz.getDireita() == null){
+                    Node no = new Node();
+                    no.setValor(String.valueOf(b));
+                    raiz.setDireita(no);                       
                 }else{
                    Node no = new Node();
                     no = buscaNoDireita(raiz);

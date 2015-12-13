@@ -19,6 +19,8 @@ public class Node {
  
 
     public Node() {
+     //   this.esquerda = new Node();
+     //   this.direita = new Node();
     }
 
     @Override
