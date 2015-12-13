@@ -16,7 +16,7 @@ public class Node {
     private String valor;
     private Node esquerda;
     private Node direita;
-    private Node pai;
+ 
 
     public Node() {
     }
@@ -48,17 +48,11 @@ public class Node {
         return true;
     }
 
-    public Node getPai() {
-        return pai;
-    }
-
-    public void setPai(Node pai) {
-        this.pai = pai;
-    }
+  
 
     @Override
     public String toString() {
-        return "Node{" + "valor=" + valor + ", esquerda=" + esquerda + ", direita=" + direita + ", pai=" + pai + '}';
+        return "Node{" + "valor=" + valor + ", esquerda=" + esquerda + ", direita=" + direita + '}';
     }
 
     public String getValor() {
