@@ -5,6 +5,8 @@
  */
 package trie;
 
+import classes.Arvore;
+import classes.Node;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -64,5 +66,8 @@ public class Trie {
            
         }
         System.out.println("\n binario : "+binario);
+        Arvore.insereNo(Integer.parseInt(binario)) ;
+       
+        
     }
 }

@@ -9,11 +9,19 @@ package classes;
  *
  * @author nani
  */
-public class Trie {
-    private Node raiz;   
+public class Arvore {
+    private static Node raiz;   
+
+    public Arvore() {
+    }
     
-       
-    public void inseriNó(Node no, int binario){
+    
+    
+    /**
+     *
+     * @param binario
+     */
+    public static void insereNo(int binario){
         if(raiz == null){
             raiz.setValor("raiz");
             if(binario == 0){
@@ -25,12 +33,12 @@ public class Trie {
         }
     }
    
-    public void removeNó(){
+    public void removeNo(){
         
     }
 
     
-    public void buscaNó(){
+    public void buscaNo(){
         
     }
 }
