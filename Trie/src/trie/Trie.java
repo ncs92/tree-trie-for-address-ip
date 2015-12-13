@@ -40,12 +40,28 @@ public class Trie {
         fis.close();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(buffer)));
-
+        int cont = 0;
         for (String line = in.readLine(); line != null; line = in.readLine()) {
-           
+           cont++;
+           if(cont == 1){
              System.out.println("\n"+line);      
+             transformaBinario(line);
+             break;
+           }
+             
         }
 
         in.close();
+    }
+
+    private static void transformaBinario(String line) {
+        String ip = line.split("|")[0];
+        System.out.println("\n ip : "+ip);
+        String binario = "";
+        for(int i = 0 ; i < ip.split(".").length; i++){
+            int valor = Integer.parseInt(ip.split(".")[i]);
+            binario += Integer.toBinaryString(valor);             
+        }
+        System.out.println("\n binario : "+binario);
     }
 }

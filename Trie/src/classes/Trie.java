@@ -10,7 +10,27 @@ package classes;
  * @author nani
  */
 public class Trie {
-
+    private Node raiz;   
+    
+       
+    public void inseriNó(Node no, int binario){
+        if(raiz == null){
+            raiz.setValor("raiz");
+            if(binario == 0){
+                raiz.getEsquerda().setValor(String.valueOf(binario));
+            }else{
+                raiz.getDireita().setValor(String.valueOf(binario));
+            }
+        }else{
+        }
+    }
    
+    public void removeNó(){
+        
+    }
 
+    
+    public void buscaNó(){
+        
+    }
 }

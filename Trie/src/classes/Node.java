@@ -14,32 +14,10 @@ import java.util.Objects;
  */
 public class Node {
     private String valor;
-    private ArrayList<Node> proximo;
+    private Node esquerda;
+    private Node direita;
 
     public Node() {
-    }
-
-    
-    
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
-    }
-
-    public ArrayList<Node> getProximo() {
-        return proximo;
-    }
-
-    public void setProximo(ArrayList<Node> proximo) {
-        this.proximo = proximo;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{" + "valor=" + valor + ", proximo=" + proximo + '}';
     }
 
     @Override
@@ -60,12 +38,46 @@ public class Node {
         if (!Objects.equals(this.valor, other.valor)) {
             return false;
         }
-        if (!Objects.equals(this.proximo, other.proximo)) {
+        if (!Objects.equals(this.esquerda, other.esquerda)) {
+            return false;
+        }
+        if (!Objects.equals(this.direita, other.direita)) {
             return false;
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" + "valor=" + valor + ", esquerda=" + esquerda + ", direita=" + direita + '}';
+    }
+
     
+    
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+
+    public Node getEsquerda() {
+        return esquerda;
+    }
+
+    public void setEsquerda(Node esquerda) {
+        this.esquerda = esquerda;
+    }
+
+    public Node getDireita() {
+        return direita;
+    }
+
+    public void setDireita(Node direita) {
+        this.direita = direita;
+    }
+
     
     
     
