@@ -40,7 +40,7 @@ public class Arvorebb {
                 node.getEsquerda().setValor(valor);
                 node.getEsquerda().setPai(node);
             }
-            System.out.println("inseriou esquerda");
+//            System.out.println("inseriou esquerda");
 
         } else { //direita
 
@@ -52,7 +52,7 @@ public class Arvorebb {
                 node.getDireita().setValor(valor);
                 node.getDireita().setPai(node);
             }
-            System.out.println("inseriou direita");
+//            System.out.println("inseriou direita");
         }
     }
 
