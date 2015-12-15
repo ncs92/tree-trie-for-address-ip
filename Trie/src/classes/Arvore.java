@@ -32,7 +32,6 @@ public class Arvore {
         if (raiz.getDireita() == null) {
             no = raiz;
         } else {
-
             buscaNoDireita(raiz.getDireita(), b);
         }
         no.setValor(String.valueOf(somaElementosD(raiz))+b);
