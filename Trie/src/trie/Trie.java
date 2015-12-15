@@ -5,8 +5,8 @@
  */
 package trie;
 
-import classes.Arvore;
-import classes.Node;
+import classes.Arvorebb;
+import classes.No;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -25,17 +25,21 @@ public class Trie {
     /**
      * @param args the command line arguments
      */
+    private static No node = null;
+    private static Arvorebb arvore = new Arvorebb();
+
     public static void main(String[] args) throws IOException {
         ler();
     }
+
     private static void ler() throws IOException {
 
         File f = new File("tabelas_de_rotas.txt");
         FileInputStream fis = new FileInputStream(f);
         FileChannel fc = fis.getChannel();
-    
+
         MappedByteBuffer mmb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
-       
+
         byte[] buffer = new byte[(int) fc.size()];
         mmb.get(buffer);
 
@@ -44,30 +48,40 @@ public class Trie {
         BufferedReader in = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(buffer)));
         int cont = 0;
         for (String line = in.readLine(); line != null; line = in.readLine()) {
-           cont++;
-           if(cont == 1){
-             System.out.println("\n"+line);      
-             transformaBinario(line);
-             break;
-           }
-             
+            cont++;
+            if (cont == 1) {
+                System.out.println("\n" + line);
+                transformaBinario(line);
+                break;
+            }
+
         }
 
         in.close();
     }
 
     private static void transformaBinario(String line) {
+
         String ip = line.split("\\|")[0];
-        System.out.println("\n ip : "+ip);
+        System.out.println("\n ip : " + ip);
         String binario = "";
-        for(int i = 0 ; i < ip.split("\\.").length; i++){
+        for (int i = 0; i < ip.split("\\.").length; i++) {
             int valor = Integer.parseInt(ip.split("\\.")[i]);
-             binario += Integer.toBinaryString(valor);      
-           
+            binario += Integer.toBinaryString(valor);
         }
-        System.out.println("\n binario : "+binario);
-        Arvore.insereNo(binario) ;
-       
+        System.out.println("\n binario : " + binario);
         
+        if (arvore.getRaiz() == null) {
+            arvore.setRaiz(new No());
+            arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.split("")[0]))); //adiciona
+            node = arvore.getRaiz();
+        }
+
+        for (int i = 1; i < binario.length(); i++) {
+            arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
+            System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
+        }
+
+        arvore.imprime(arvore.getRaiz());
     }
 }
