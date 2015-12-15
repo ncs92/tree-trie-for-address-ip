@@ -63,6 +63,7 @@ public class Trie {
     private static void transformaBinario(String line) {
 
         String ip = line.split("\\|")[0];
+        String porta = line.split("\\|")[2];
         System.out.println("\n ip : " + ip);
         String binario = "";
         for (int i = 0; i < ip.split("\\.").length; i++) {
@@ -77,11 +78,16 @@ public class Trie {
             node = arvore.getRaiz();
         }
 
-        for (int i = 1; i < binario.length(); i++) {
-            arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
-            System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
+        for (int i = 1; i < binario.length(); i++) {            
+            if(i == binario.length()-1){
+               arvore.inserirPorta(node, Integer.parseInt(String.valueOf(binario.split("")[i])),porta); 
+            }else{
+               arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
+            }
+          //  System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
         }
 
         arvore.imprime(arvore.getRaiz());
+        
     }
 }

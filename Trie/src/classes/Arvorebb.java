@@ -55,6 +55,34 @@ public class Arvorebb {
 //            System.out.println("inseriou direita");
         }
     }
+    public void inserirPorta(No node, int valor, String porta) {
+
+        if (node.getValor() > valor) { //esquerda
+            if (node.getEsquerda() != null) {
+                inserir(node.getEsquerda(), valor);
+
+            } else {
+                node.setEsquerda(new No());
+                node.getEsquerda().setValor(valor);
+                node.getEsquerda().setPorta(porta);
+                node.getEsquerda().setPai(node);
+            }
+//            System.out.println("inseriou esquerda");
+
+        } else { //direita
+
+            if (node.getDireita() != null) {
+                inserir(node.getDireita(), valor);
+
+            } else {
+                node.setDireita(new No());
+                node.getDireita().setValor(valor);
+                node.getDireita().setPorta(porta);
+                node.getDireita().setPai(node);
+            }
+//            System.out.println("inseriou direita");
+        }
+    }
 
     public void imprime(No raiz) {
         if (raiz == null) {

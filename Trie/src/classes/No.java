@@ -16,6 +16,7 @@ public class No {
     private No direita;
     private No esquerda;
     private No pai;
+    private String porta;
 
     public No() {
         this.esquerda = null;
@@ -27,6 +28,15 @@ public class No {
         return valor;
     }
 
+    public String getPorta() {
+        return porta;
+    }
+
+    public void setPorta(String porta) {
+        this.porta = porta;
+    }
+
+    
     public void setValor(int valor) {
         this.valor = valor;
     }
