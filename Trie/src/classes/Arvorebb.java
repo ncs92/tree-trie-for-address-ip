@@ -29,7 +29,7 @@ public class Arvorebb {
         raiz.setValor(valor);
     }
 
-    public void inserirA(No node, int valor) {
+    public void inserirErrado(No node, int valor) {
 
         if (valor == 0) { //esquerda
             if (node.getEsquerda() != null) {
@@ -59,25 +59,27 @@ public class Arvorebb {
     public No inserir(No node, int valor) {
         if (valor == 0) {
             if (node.getEsquerda() != null) {
-                System.out.println("ENCONTROU NÓ ESQUERDA");
+//                System.out.println("ENCONTROU NÓ ESQUERDA");
                 return node.getEsquerda();
-                
+
             } else {
-                System.out.println("NOVO NO ESQUERDA");
+//                System.out.println("NOVO NO ESQUERDA");
                 node.setEsquerda(new No());
                 node.getEsquerda().setValor(valor);
+                node.getEsquerda().setPai(node);
                 return node.getEsquerda();
             }
-            
+
         } else if (valor == 1) {
             if (node.getDireita() != null) {
-                System.out.println("ENCONTROU NÓ DIREITA");
+//                System.out.println("ENCONTROU NÓ DIREITA");
                 return node.getDireita();
-                
+
             } else {
-                System.out.println("NOVO NÓ DIREITA");
+//                System.out.println("NOVO NÓ DIREITA");
                 node.setDireita(new No());
                 node.getDireita().setValor(valor);
+                node.getDireita().setPai(node);
                 return node.getDireita();
             }
         }
@@ -132,25 +134,4 @@ public class Arvorebb {
 
     }
 
-//    public No busca(No node) {
-//        if (this.raiz == null) {
-//            return null;
-//        } else {
-//            if (node.getValor() == this.raiz.getAluno().getMatricula()) {
-//                return this.raiz.getAluno();
-//            } else {
-//                if (matricula > this.raiz.getAluno().getMatricula()) {
-//                    if (this.arvoreDireita == null) {
-//                        return null;
-//                    }
-//                    return this.arvoreDireita.busca(matricula);
-//                } else {
-//                    if (this.arvoreEsquerda == null) {
-//                        return null;
-//                    }
-//                    return this.arvoreEsquerda.busca(matricula);
-//                }
-//            }
-//        }
-//    }
 }

@@ -50,11 +50,11 @@ public class Trie {
         int cont = 0;
         for (String line = in.readLine(); line != null; line = in.readLine()) {
             cont++;
-            if (cont == 1) {
+//            if (cont == 1) {
                 System.out.println("\n" + line);
                 insereNaArvore(line);
-                break;
-            }
+//                break;
+//            }
 
         }
 
@@ -89,24 +89,20 @@ public class Trie {
 
         noAtual = arvore.getRaiz();
         
-        for (int i = 0; i < mascara; i++) {
-            
+        for (int i = 0; i < mascara; i++) {            
             if (arvore.getRaiz() == null) { //inicializa a raiz
                 arvore.setRaiz(new No());
                 arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.charAt(i)))); //adiciona
                 noAtual = arvore.getRaiz();
-                System.out.println("inicializou raiz");
+//                System.out.println("inicializou raiz");
                 
-            } else if (i == binario.length() - 1) {
-                
+            } else if (i == mascara - 1) {   
                 arvore.inserirPorta(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])), porta);
-                
             } else {
-                System.out.println("entrou inserir");
+//                System.out.println("entrou inserir");
                 noAtual = arvore.inserir(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])));
             }
-              System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
+//              System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
         }
-
     }
 }
