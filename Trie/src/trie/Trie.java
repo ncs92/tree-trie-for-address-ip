@@ -59,6 +59,17 @@ public class Trie {
 
         in.close();
     }
+    
+    private static String completaBit(int valor){
+         String bin = Integer.toBinaryString(valor);
+         int falta = 8 - bin.length();
+         String zero = "";
+         for(int i = 0; i < falta; i++){
+             zero += "0";
+         }
+         bin = zero + bin;
+         return bin;
+    }
 
     private static void transformaBinario(String line) {
 
@@ -68,13 +79,13 @@ public class Trie {
         String binario = "";
         for (int i = 0; i < ip.split("\\.").length; i++) {
             int valor = Integer.parseInt(ip.split("\\.")[i]);
-            binario += Integer.toBinaryString(valor);
+             binario += completaBit(valor);           
         }
         System.out.println("\n binario : " + binario);
         
         if (arvore.getRaiz() == null) {
             arvore.setRaiz(new No());
-            arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.split("")[0]))); //adiciona
+            arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.charAt(0)))); //adiciona
             node = arvore.getRaiz();
         }
 
