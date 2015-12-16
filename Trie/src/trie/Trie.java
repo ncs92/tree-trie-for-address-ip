@@ -60,43 +60,52 @@ public class Trie {
 
         in.close();
     }
-    
-    private static String completaBit(int valor){
-         String bin = Integer.toBinaryString(valor);
-         int falta = 8 - bin.length();
-         String zero = "";
-         for(int i = 0; i < falta; i++){
-             zero += "0";
-         }
-         bin = zero + bin;
-         return bin;
+
+    private static String completaBit(int valor) {
+        String bin = Integer.toBinaryString(valor);
+        int falta = 8 - bin.length();
+        String zero = "";
+        for (int i = 0; i < falta; i++) {
+            zero += "0";
+        }
+        bin = zero + bin;
+        return bin;
     }
 
     private static void insereNaArvore(String line) {
 
         String ip = line.split("\\|")[0];
+        int mascara = Integer.parseInt(String.valueOf(line.split("\\|")[1]));
         String porta = line.split("\\|")[2];
         System.out.println("\n ip : " + ip);
         String binario = "";
+        No noAtual = null;
+        
         for (int i = 0; i < ip.split("\\.").length; i++) {
             int valor = Integer.parseInt(ip.split("\\.")[i]);
-             binario += completaBit(valor);           
+            binario += completaBit(valor);
         }
         System.out.println("\n binario : " + binario);
 
-        if (arvore.getRaiz() == null) {
-            arvore.setRaiz(new No());
-            arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.charAt(0)))); //adiciona
-            node = arvore.getRaiz();
-        }
-
-        for (int i = 1; i < binario.length(); i++) {
-            if (i == binario.length() - 1) {
-                arvore.inserirPorta(node, Integer.parseInt(String.valueOf(binario.split("")[i])), porta);
+        noAtual = arvore.getRaiz();
+        
+        for (int i = 0; i < mascara; i++) {
+            
+            if (arvore.getRaiz() == null) { //inicializa a raiz
+                arvore.setRaiz(new No());
+                arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.charAt(i)))); //adiciona
+                noAtual = arvore.getRaiz();
+                System.out.println("inicializou raiz");
+                
+            } else if (i == binario.length() - 1) {
+                
+                arvore.inserirPorta(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])), porta);
+                
             } else {
-                arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
+                System.out.println("entrou inserir");
+                noAtual = arvore.inserir(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])));
             }
-            //  System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
+              System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
         }
 
     }
