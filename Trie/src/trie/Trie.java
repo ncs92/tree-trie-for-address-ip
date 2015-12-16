@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,12 +26,18 @@ public class Trie {
     /**
      * @param args the command line arguments
      */
-    private static No node = null;
     private static Arvorebb arvore = new Arvorebb();
 
     public static void main(String[] args) throws IOException {
+        String destino = null;
         ler();
-        arvore.imprime(arvore.getRaiz());
+//        arvore.imprime(arvore.getRaiz());
+        do {
+            destino = JOptionPane.showInputDialog("Digite um IP | Mácara");
+            procuraDestino(destino);
+
+        } while (!destino.equals("x"));
+
     }
 
     private static void ler() throws IOException {
@@ -51,8 +58,8 @@ public class Trie {
         for (String line = in.readLine(); line != null; line = in.readLine()) {
             cont++;
 //            if (cont == 1) {
-                System.out.println("\n" + line);
-                insereNaArvore(line);
+            System.out.println("\n" + line);
+            insereNaArvore(line);
 //                break;
 //            }
 
@@ -80,7 +87,7 @@ public class Trie {
         System.out.println("\n ip : " + ip);
         String binario = "";
         No noAtual = null;
-        
+
         for (int i = 0; i < ip.split("\\.").length; i++) {
             int valor = Integer.parseInt(ip.split("\\.")[i]);
             binario += completaBit(valor);
@@ -88,21 +95,43 @@ public class Trie {
         System.out.println("\n binario : " + binario);
 
         noAtual = arvore.getRaiz();
-        
-        for (int i = 0; i < mascara; i++) {            
+
+        for (int i = 0; i < mascara; i++) {
             if (arvore.getRaiz() == null) { //inicializa a raiz
                 arvore.setRaiz(new No());
                 arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.charAt(i)))); //adiciona
                 noAtual = arvore.getRaiz();
-//                System.out.println("inicializou raiz");
-                
-            } else if (i == mascara - 1) {   
+
+            } else if (i == mascara - 1) {   // insere o destino na ultima posição do endereço
                 arvore.inserirPorta(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])), porta);
             } else {
-//                System.out.println("entrou inserir");
                 noAtual = arvore.inserir(noAtual, Integer.parseInt(String.valueOf(binario.split("")[i])));
             }
-//              System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
         }
     }
+
+    private static void procuraDestino(String destino) {
+        String[] aux = destino.split("\\|");
+        String ip = aux[0];
+        int mascara = Integer.parseInt(String.valueOf(aux[1]));
+        String binario = "";
+        No noAtual = arvore.getRaiz();
+
+        for (int i = 0; i < ip.split("\\.").length; i++) {
+            int valor = Integer.parseInt(ip.split("\\.")[i]);
+            binario += completaBit(valor);
+        }
+
+        System.out.println("Binario destino : " + binario);
+        for (int i = 0; i < mascara; i++) {
+            noAtual = arvore.inserir(noAtual,Integer.parseInt(String.valueOf(binario.split("")[i])));
+        }
+
+        if(noAtual == null){
+            System.out.println("404");
+        } else {
+            System.out.println("Destino : " + noAtual.getPorta());
+        }
+    }
+
 }

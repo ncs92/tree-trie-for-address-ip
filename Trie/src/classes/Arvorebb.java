@@ -122,7 +122,10 @@ public class Arvorebb {
             return;
 
         } else {
-            if (raiz.getPai() != null) {
+            if (raiz.getPai() != null && raiz.getPorta() != null) {
+                System.out.println("\n " + raiz.getValor() + " pai " + raiz.getPai().getValor() + " endereco " + raiz.getPorta());
+
+            } else if (raiz.getPai() != null) {
                 System.out.println("\n " + raiz.getValor() + " pai " + raiz.getPai().getValor());
             } else {
                 System.out.println("\n " + raiz.getValor());
@@ -134,4 +137,20 @@ public class Arvorebb {
 
     }
 
+    public No busca(No node) {
+        if (node.getValor() == 0) {
+            System.out.println("ENCONTROU NÓ ESQUERDA");
+            System.out.println("No " + node.getValor());
+            return node.getEsquerda();
+            
+        } else if (node.getValor() == 1) {
+            
+            System.out.println("ENCONTROU NÓ DIREITA");
+            System.out.println("No " + node.getValor());
+            return node.getDireita();
+            
+        }
+            return null;
+        
+    }
 }
