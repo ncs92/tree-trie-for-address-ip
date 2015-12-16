@@ -31,7 +31,7 @@ public class Arvorebb {
 
     public void inserir(No node, int valor) {
 
-        if (node.getValor() > valor) { //esquerda
+        if (valor == 0) { //esquerda
             if (node.getEsquerda() != null) {
                 inserir(node.getEsquerda(), valor);
 

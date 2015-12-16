@@ -30,6 +30,7 @@ public class Trie {
 
     public static void main(String[] args) throws IOException {
         ler();
+        arvore.imprime(arvore.getRaiz());
     }
 
     private static void ler() throws IOException {
@@ -51,7 +52,7 @@ public class Trie {
             cont++;
             if (cont == 1) {
                 System.out.println("\n" + line);
-                transformaBinario(line);
+                insereNaArvore(line);
                 break;
             }
 
@@ -60,7 +61,7 @@ public class Trie {
         in.close();
     }
 
-    private static void transformaBinario(String line) {
+    private static void insereNaArvore(String line) {
 
         String ip = line.split("\\|")[0];
         String porta = line.split("\\|")[2];
@@ -71,23 +72,21 @@ public class Trie {
             binario += Integer.toBinaryString(valor);
         }
         System.out.println("\n binario : " + binario);
-        
+
         if (arvore.getRaiz() == null) {
             arvore.setRaiz(new No());
             arvore.getRaiz().setValor(Integer.parseInt(String.valueOf(binario.split("")[0]))); //adiciona
             node = arvore.getRaiz();
         }
 
-        for (int i = 1; i < binario.length(); i++) {            
-            if(i == binario.length()-1){
-               arvore.inserirPorta(node, Integer.parseInt(String.valueOf(binario.split("")[i])),porta); 
-            }else{
-               arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
+        for (int i = 1; i < binario.length(); i++) {
+            if (i == binario.length() - 1) {
+                arvore.inserirPorta(node, Integer.parseInt(String.valueOf(binario.split("")[i])), porta);
+            } else {
+                arvore.inserir(node, Integer.parseInt(String.valueOf(binario.split("")[i])));
             }
-          //  System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
+            //  System.out.println("valor " + String.valueOf(binario.split("")[i]) + "\n");
         }
 
-        arvore.imprime(arvore.getRaiz());
-        
     }
 }
