@@ -29,33 +29,6 @@ public class Arvorebb {
         raiz.setValor(valor);
     }
 
-    public void inserirErrado(No node, int valor) {
-
-        if (valor == 0) { //esquerda
-            if (node.getEsquerda() != null) {
-                inserir(node.getEsquerda(), valor);
-
-            } else {
-                node.setEsquerda(new No());
-                node.getEsquerda().setValor(valor);
-                node.getEsquerda().setPai(node);
-            }
-//            System.out.println("inseriou esquerda");
-
-        } else { //direita
-
-            if (node.getDireita() != null) {
-                inserir(node.getDireita(), valor);
-
-            } else {
-                node.setDireita(new No());
-                node.getDireita().setValor(valor);
-                node.getDireita().setPai(node);
-            }
-//            System.out.println("inseriou direita");
-        }
-    }
-
     public No inserir(No node, int valor) {
         if (valor == 0) {
             if (node.getEsquerda() != null) {
